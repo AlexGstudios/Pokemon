@@ -7,6 +7,7 @@ export const MainPage = () => {
     const [page, setPage] = useState('default')
     const [pokemons, setPokemons] = useState([])
     const [pokemon, setPokemon] = useState()
+    const [pic, setPic] = useState([])
 
     const URL = 'https://pokeapi.co/api/v2/pokemon?limit=100'
 
@@ -27,8 +28,10 @@ export const MainPage = () => {
         setPage('pokemon')
     }
 
-    const toDefault = (event) => {
+    const toDefault = (pic) => {
 
+        console.log(pic)
+        setPic(pic)
         setPage('')
     }
 
@@ -36,7 +39,7 @@ export const MainPage = () => {
         case 'pokemon':
             return(
                 <>
-                    <Pokemon passURL={pokemon.url} onClick={() => toDefault()}></Pokemon>
+                    <Pokemon passURL={pokemon.url} parentToDefault={toDefault}></Pokemon>
                 </>
             )
         default:
@@ -44,7 +47,7 @@ export const MainPage = () => {
                 <>
                     <ul>
                         {pokemons.map(items => {
-                            return <PokeList key={items.name} name={items.name} onClick={() => newPage(items)}></PokeList>
+                            return <PokeList key={items.name} name={items.name} pic={pic} onClick={() => newPage(items)}></PokeList>
                         })}
                     </ul>
                 </>

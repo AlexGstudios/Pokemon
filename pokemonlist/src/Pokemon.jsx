@@ -15,6 +15,12 @@ export const Pokemon = (props) => {
         }
         fetchData()
     }, [])
+
+    const picture = () => {
+
+        props.parentToDefault(pokemon.sprites && pokemon.sprites.other.dream_world.front_default)
+    }
+
     return(
         <>
             <img src={pokemon.sprites && pokemon.sprites.other.dream_world.front_default} alt={pokemon.name}/>
@@ -24,7 +30,7 @@ export const Pokemon = (props) => {
             <p>Attack: {pokemon.stats && pokemon.stats[1].base_stat} | Special Attack: {pokemon.stats && pokemon.stats[3].base_stat}</p>
             <p>Defense: {pokemon.stats && pokemon.stats[2].base_stat} | Special defense: {pokemon.stats && pokemon.stats[4].base_stat}</p>
             <p>Speed: {pokemon.stats && pokemon.stats[5].base_stat}</p>
-            <button onClick={props.onClick}>Back To List</button>
+            <button onClick={picture}>Back To List</button>
         </>
     )
 }
