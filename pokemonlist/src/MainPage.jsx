@@ -7,7 +7,7 @@ export const MainPage = () => {
     const [page, setPage] = useState('default')
     const [pokemons, setPokemons] = useState([])
     const [pokemon, setPokemon] = useState()
-    const [pic, setPic] = useState([])
+    // const [pic, setPic] = useState([])
 
     const URL = 'https://pokeapi.co/api/v2/pokemon?limit=100'
 
@@ -28,10 +28,27 @@ export const MainPage = () => {
         setPage('pokemon')
     }
 
-    const toDefault = (pic) => {
+    const toDefault = (picID, picUrl) => {
 
-        console.log(pic)
-        setPic(pic)
+        var newPokemons = pokemons.filter(poke => poke === pokemons[picID])
+
+        const udtNewPokemons = {
+            name: newPokemons[0].name,
+            url: newPokemons[0].url,
+            pic: picUrl
+        }
+
+        const newPokemonList = pokemons.map(el => (el === pokemons[picID] ? Object.assign(el, udtNewPokemons) : el))
+
+        setPokemons(newPokemonList)
+        setPage('')
+
+    }
+
+    const deletePokemon = (thisPokemon) => {
+
+        const newPokemonList = pokemons.filter(poke => poke.name !== thisPokemon)
+        setPokemons(newPokemonList)
         setPage('')
     }
 
@@ -39,7 +56,7 @@ export const MainPage = () => {
         case 'pokemon':
             return(
                 <>
-                    <Pokemon passURL={pokemon.url} parentToDefault={toDefault}></Pokemon>
+                    <Pokemon passURL={pokemon.url} parentToDefault={toDefault} deletePokemon={deletePokemon}></Pokemon>
                 </>
             )
         default:
@@ -47,7 +64,7 @@ export const MainPage = () => {
                 <>
                     <ul>
                         {pokemons.map(items => {
-                            return <PokeList key={items.name} name={items.name} pic={pic} onClick={() => newPage(items)}></PokeList>
+                            return <PokeList key={items.name} name={items.name} picture={items.pic} onClick={() => newPage(items)}></PokeList>
                         })}
                     </ul>
                 </>

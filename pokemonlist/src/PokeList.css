@@ -1,0 +1,6 @@
+.PokeList{
+    display: table;
+    border: 1px solid rgba(25, 50, 50, 1);
+    border-radius: 5px;
+    margin: 0 auto;
+}

@@ -18,13 +18,19 @@ export const Pokemon = (props) => {
 
     const picture = () => {
 
-        props.parentToDefault(pokemon.sprites && pokemon.sprites.other.dream_world.front_default)
+        props.parentToDefault(pokemon.id - 1, pokemon.sprites && pokemon.sprites.other.dream_world.front_default)
+    }
+
+    const deleteThisPokemon = () => {
+
+        props.deletePokemon(pokemon.name)
     }
 
     return(
         <>
             <img src={pokemon.sprites && pokemon.sprites.other.dream_world.front_default} alt={pokemon.name}/>
             <h1>{pokemon.name}</h1>
+            <button onClick={deleteThisPokemon}>Delete</button>
             <p>Height: {pokemon.height} Weight: {pokemon.weight}</p>
             <p>HP: {pokemon.stats && pokemon.stats[0].base_stat}</p>
             <p>Attack: {pokemon.stats && pokemon.stats[1].base_stat} | Special Attack: {pokemon.stats && pokemon.stats[3].base_stat}</p>
