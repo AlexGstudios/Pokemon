@@ -7,7 +7,6 @@ export const MainPage = () => {
     const [page, setPage] = useState('default')
     const [pokemons, setPokemons] = useState([])
     const [pokemon, setPokemon] = useState()
-    // const [pic, setPic] = useState([])
 
     const URL = 'https://pokeapi.co/api/v2/pokemon?limit=100'
 
