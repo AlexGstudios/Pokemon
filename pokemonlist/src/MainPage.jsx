@@ -27,9 +27,9 @@ export const MainPage = () => {
         setPage('pokemon')
     }
 
-    const toDefault = (picID, picUrl) => {
+    const toDefault = (picName, picUrl) => {
 
-        var newPokemons = pokemons.filter(poke => poke === pokemons[picID])
+        var newPokemons = pokemons.filter(poke => poke.name === picName)
 
         const udtNewPokemons = {
             name: newPokemons[0].name,
@@ -37,7 +37,7 @@ export const MainPage = () => {
             pic: picUrl
         }
 
-        const newPokemonList = pokemons.map(el => (el === pokemons[picID] ? Object.assign(el, udtNewPokemons) : el))
+        const newPokemonList = pokemons.map(el => (el.name === picName ? Object.assign(el, udtNewPokemons) : el))
 
         setPokemons(newPokemonList)
         setPage('')

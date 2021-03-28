@@ -18,7 +18,7 @@ export const Pokemon = (props) => {
 
     const picture = () => {
 
-        props.parentToDefault(pokemon.id - 1, pokemon.sprites && pokemon.sprites.other.dream_world.front_default)
+        props.parentToDefault(pokemon.name, pokemon.sprites && pokemon.sprites.other.dream_world.front_default)
     }
 
     const deleteThisPokemon = () => {
